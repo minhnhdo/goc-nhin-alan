@@ -2,9 +2,9 @@
 import itertools
 
 from calibre.web.feeds.news import BasicNewsRecipe
-import BeautifulSoup
 from datetime import datetime
 import time
+import re
 
 
 class GocNhinAlan(BasicNewsRecipe):
@@ -19,7 +19,8 @@ class GocNhinAlan(BasicNewsRecipe):
     remove_javascript = True
     no_stylesheets = True
     keep_only_tags = [{'name': 'div', 'id': 'article_content'}]
-    delay = 1  # seconds
+    remove_tags = [{'name': 'div', 'class': re.compile(r'yarpp-related')}]
+    delay = 2  # seconds
     date_format = '%Y-%m-%dT%H:%M:%SZ'
 
     @staticmethod
@@ -41,13 +42,8 @@ class GocNhinAlan(BasicNewsRecipe):
                 soup = self.index_to_soup(url)
                 self.report_progress(0, 'Fetched feed {}'.format(url))
                 for article in soup.findAll('entry'):
-                    title_node = article.find('title')
-                    for t in title_node:
-                        if isinstance(t, BeautifulSoup.CData):
-                            title = t.contents[0].strip()
-                            break
                     article_list.append({
-                        'title': title,
+                        'title': article.find('title').string.strip(),
                         'url': article.find('link').get('href').strip(),
                         'date': datetime.strptime(article.find('published').renderContents().strip(), self.date_format),
                     })
