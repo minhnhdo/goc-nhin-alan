@@ -8,7 +8,7 @@ import re
 
 
 class GocNhinAlan(BasicNewsRecipe):
-    title = u'Góc Nhìn Alan'
+    title = u'Góc Nhìn Alan - Khu Vườn Alan'
     max_articles_per_feed = 1000000
     oldest_article = 3650.0
     timeout = 30
@@ -31,11 +31,11 @@ class GocNhinAlan(BasicNewsRecipe):
         ret = []
         for title, urls in [
             (u'Khu Vườn Alan', self.make_url('http://www.gocnhinalan.com/category/bai-tieng-viet/feed/atom', 29)),
-            (u'Lang Thang Phố Nhỏ', self.make_url('http://www.gocnhinalan.com/category/bai-cua-khach/feed/atom', 72)),
-            (u'Sân Chơi của Khách', self.make_url('http://www.gocnhinalan.com/category/bai-tieng-anh/feed/atom', 26)),
-            (u'Kí Sự Tháng Ngày',
+            (u'Sân Chơi của Khách', self.make_url('http://www.gocnhinalan.com/category/bai-cua-khach/feed/atom', 72)),
+            (u'Tư Duy Đại Dương', self.make_url('http://www.gocnhinalan.com/category/bai-tieng-anh/feed/atom', 26)),
+            (u'Lang Thang Phố Nhỏ',
              self.make_url('http://www.gocnhinalan.com/category/blog-cua-alan-va-bca/feed/atom', 36)),
-            (u'Tư Duy Đại Dương',
+            (u'Kí Sự Tháng Ngày',
              self.make_url('http://www.gocnhinalan.com/category/cac-hoat-dong-khac/hoat-dong-khac/feed/atom', 3))]:
             article_list = []
             for url in urls:
