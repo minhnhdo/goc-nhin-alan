@@ -8,7 +8,7 @@ import re
 
 
 class GocNhinAlan(BasicNewsRecipe):
-    title = u'Góc Nhìn Alan - Khu Vườn Alan'
+    title = u'Góc Nhìn Alan'
     max_articles_per_feed = 1000000
     oldest_article = 3650.0
     timeout = 30
